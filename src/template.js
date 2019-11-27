@@ -5,6 +5,7 @@ export default class Template extends React.Component {
         super(props);
         this.state = {};
     }
+
     render() {
         return (
             <div>

@@ -1,4 +1,5 @@
 import Register from "./registration";
+
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import Template from "./template";

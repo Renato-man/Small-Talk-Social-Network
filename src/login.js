@@ -1,10 +1,15 @@
 import React from "react";
+
 // import Template from "./template";
 import axios from "./axios";
 
 import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
     submit() {
         axios
             .post("/login", {
@@ -35,6 +40,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
+                {this.state.error && <div className="error">Oops!</div>}
                 <h1>I am login!!!</h1>
                 <form>
                     <h3>Email</h3>

@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS socialusers;
 
+
 CREATE TABLE socialusers(
     id SERIAL PRIMARY KEY,
     firstname VARCHAR(20) NOT NULL,
