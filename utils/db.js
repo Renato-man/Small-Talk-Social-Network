@@ -17,3 +17,14 @@ module.exports.getUserInfo = function getUserInfo(email) {
         email
     ]);
 };
+
+module.exports.addImage = function(image_url, id) {
+    return db.query("UPDATE socialusers set image_url = ($1) WHERE id = ($2)", [
+        image_url,
+        id
+    ]);
+};
+
+module.exports.getUser = function(id) {
+    return db.query("SELECT * FROM socialusers WHERE id = $1", [id]);
+};

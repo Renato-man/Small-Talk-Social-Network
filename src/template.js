@@ -1,4 +1,5 @@
 import React from "react";
+import { ProfilePic } from "./profile-pic";
 
 export default class Template extends React.Component {
     constructor(props) {
