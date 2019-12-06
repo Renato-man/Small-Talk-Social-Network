@@ -9,8 +9,15 @@ export default class Template extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1> WELCOME TO MY SOCIAL PLATFORM </h1>
+            <div className="header">
+                <h1 className="logo">LOGO</h1>
+                <div>
+                    <ProfilePic
+                        profilePicClass="small"
+                        imgurl={this.props.imgurl}
+                        toggleFunction={this.props.toggleFunction}
+                    />
+                </div>
             </div>
         );
     }
