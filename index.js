@@ -258,17 +258,6 @@ app.post("/deleteFriendship/:otherId", (req, res) => {
         .catch(err => console.log("not working", err));
 });
 
-// app.post("/requestFriendship", (req, res) => {
-//     console.log("requesting friendship with receiver:", req.body.otherId);
-//     db.sendFriendRequest(req.body.otherId, req.session.user)
-//         .then(result => {
-//             res.json({
-//                 buttonText: "Cancel Friend Request"
-//             });
-//         })
-//         .catch(console.log("error in cancel friendrequest"));
-// });
-
 app.get("/findpeople/:val", (req, res) => {
     console.log(req.params);
     let val = req.params.val;
@@ -301,78 +290,3 @@ app.get("*", function(req, res) {
 app.listen(8080, function() {
     console.log("I'm listening.");
 });
-
-//
-// app.get("/checkforfriendship", (req, res) => {
-//     console.log("id i check for friendreqeusts", req.query.otherId);
-//     databaseActions
-//         .checkingFriendshipStatus(req.query.otherId, req.session.userId)
-//         .then(result => {
-//             console.log("checked friendship status");
-//             if (result.rowCount === 0) {
-//                 res.json({
-//                     buttonText: "send friendrequest",
-//                     friendshipStatus: ""
-//                 });
-//             }
-//             if (result.rowCount > 0) {
-//                 if (result.rows[0].accepted === true) {
-//                     res.json({
-//                         buttonText: "cancel friendship",
-//                         friendshipStatus: "friends"
-//                     });
-//                 } else if (result.rows[0].accepted === false) {
-//                     if (result.rows[0].receiver_id === req.session.userId) {
-//                         res.json({
-//                             buttonText: "accept friendrequest",
-//                             friendshipStatus: "they wanna be friends with u!"
-//                         });
-//                     } else if (
-//                         result.rows[0].sender_id === req.session.userId
-//                     ) {
-//                         res.json({
-//                             buttonText: "cancel friendrequest",
-//                             friendshipStatus:
-//                                 "u asked them for friendship and they havent answered yet"
-//                         });
-//                     }
-//                 }
-//             }
-//         })
-//         .catch(err => console.log("not doing sql correctly", err));
-// });
-// app.post("/requestfriendship", (req, res) => {
-//     console.log("requesting friendship with receiver id:", req.body.otherId);
-//     databaseActions
-//         .sendFriendRequest(req.body.otherId, req.session.userId)
-//         .then(result => {
-//             res.json({
-//                 buttonText: "cancel friendrequest",
-//                 friendshipStatus:
-//                     "u asked them for friendship and they havent answered yet"
-//             });
-//         })
-//         .catch(console.log("handling error in cancel friendrequest"));
-// });
-// app.post("/cancelfriendship", (req, res) => {
-//     databaseActions
-//         .cancelFriendship(req.body.otherId, req.session.userId)
-//         .then(result => {
-//             res.json({
-//                 buttonText: "send friendrequest",
-//                 friendshipStatus: "not friends"
-//             });
-//         })
-//         .catch(console.log("handling error in send friendrequest"));
-// });
-// app.post("/acceptfriendship", (req, res) => {
-//     databaseActions
-//         .acceptFriendship(req.body.otherId, req.session.userId)
-//         .then(result => {
-//             res.json({
-//                 buttonText: "cancel friendship",
-//                 friendshipStatus: "friends"
-//             });
-//         })
-//         .catch(console.log("handling error in accept friendrequest"));
-// });
