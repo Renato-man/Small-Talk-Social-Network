@@ -10,6 +10,8 @@ const multer = require("multer");
 const path = require("path");
 const uidSafe = require("uid-safe");
 const { s3Url } = require("./config");
+const server = require("http").Server(app);
+const io = require("socket.io")(server, { origins: "localhost:8080" });
 
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
@@ -37,17 +39,21 @@ app.use(
     })
 );
 
-app.use(
-    cookieSession({
-        secret: `I'm always angry.`,
-        maxAge: 1000 * 60 * 60 * 24 * 14
-    })
-);
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90
+});
+
+app.use(cookieSessionMiddleware);
+
+io.use(function(socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
 
 app.use(compression());
-
+app.use(express.static("./assets"));
 app.use(express.json());
-
+app.use(express.static("./utils"));
 app.use(csurf());
 
 app.use(function(req, res, next) {
@@ -73,7 +79,6 @@ app.post("/register", (req, res) => {
     let password = req.body.password;
 
     hash(password).then(hashedPassword => {
-        // console.log("hash: ", hashedPassword);
         db.register(firstname, lastname, email, hashedPassword)
             .then(results => {
                 req.session.user = results.rows[0].id;
@@ -116,7 +121,6 @@ app.post("/bio", (req, res) => {
     console.log("req.bodyyyy....", req.body);
     db.setBio(req.session.user, req.body.bio)
         .then(results => {
-            // console.log("resuuuuuuuuuuuuuults", results);
             res.json(results.rows);
         })
         .catch(err => {
@@ -129,14 +133,16 @@ app.post("/bio", (req, res) => {
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const imageUrl = `${s3Url}/${req.file.filename}`;
-    // console.log("hello", imageUrl);
+    console.log("imageurl: ", imageUrl);
     let id = req.session.user;
     db.addImage(imageUrl, id)
         .then(({ rows }) => {
             console.log(rows);
             res.json({ imageUrl });
         })
-        .catch();
+        .catch(err => {
+            console.log(err);
+        });
 });
 
 app.get("/welcome", function(req, res) {
@@ -151,7 +157,6 @@ app.get("/getUser", (req, res) => {
     let id = req.session.user;
     db.getUser(id)
         .then(({ rows }) => {
-            // console.log("db response from getUser route: ", rows);
             res.json(rows[0]);
         })
         .catch();
@@ -160,7 +165,6 @@ app.get("/getUser", (req, res) => {
 app.get("/api/user/:id", (req, res) => {
     let id = req.params.id;
     db.getOther(id).then(({ rows }) => {
-        // console.log("this is the rows: ", rows);
         res.json({ user: rows[0], id: req.session.user });
     });
 });
@@ -169,14 +173,12 @@ app.get("/find", (req, res) => {
     let id = req.params.id;
     db.findPeople(id)
         .then(({ rows }) => {
-            // console.log("this is the db response rows in find: ", rows);
             res.json(rows);
         })
         .catch();
 });
 
 app.post("/send-friend-request/:otherId", (req, res) => {
-    console.log("server", req.params.otherId, req.session.user);
     return db
         .addFriend(req.params.otherId, req.session.user)
         .then(() => {
@@ -190,7 +192,6 @@ app.post("/send-friend-request/:otherId", (req, res) => {
 });
 
 app.post("/accept-friend-request/:otherId", (req, res) => {
-    console.log("server accpet !!!!!", req.params.otherId, req.session.user);
     db.accept(req.params.otherId, req.session.user)
         .then(() => {
             console.log(
@@ -209,11 +210,8 @@ app.post("/accept-friend-request/:otherId", (req, res) => {
 });
 
 app.get("/friendshipStatus/:otherId", (req, res) => {
-    // console.log("check friendship: ", req.params.otherId);
     db.checkFriendship(req.params.otherId, req.session.user)
         .then(result => {
-            console.log("checked friendship");
-
             if (result.rows.length > 0) {
                 if (result.rows[0].sender_id === req.session.user) {
                     if (result.rows[0].accepted === true) {
@@ -247,10 +245,8 @@ app.get("/friendshipStatus/:otherId", (req, res) => {
 });
 
 app.post("/deleteFriendship/:otherId", (req, res) => {
-    console.log("delete friendship: ", req.params.otherId);
     db.delete(req.params.otherId, req.session.user)
         .then(() => {
-            // console.log("checked friendship");
             res.json({
                 buttontext: "Send Friend Request"
             });
@@ -259,20 +255,25 @@ app.post("/deleteFriendship/:otherId", (req, res) => {
 });
 
 app.get("/findpeople/:val", (req, res) => {
-    console.log(req.params);
     let val = req.params.val;
-
     db.search(val)
         .then(({ rows }) => {
-            console.log("SEARCH!!!!!!!!!!!!!!: ", rows);
             res.json(rows);
         })
         .catch();
 });
 
-app.get("/logout", (req, res) => {
+app.get("/friends-wannabes", (req, res) => {
+    db.getFriendAndWannabes(req.session.user)
+        .then(({ rows }) => {
+            res.json(rows);
+        })
+        .catch(err => console.log("err in app.get friends-wannabes", err));
+});
+
+app.post("/logout", (req, res) => {
     req.session = null;
-    res.redirect("/welcome#/login");
+    res.redirect("/");
 });
 
 app.get("*", function(req, res) {
@@ -283,10 +284,32 @@ app.get("*", function(req, res) {
     }
 });
 
-// app.get("*", function(req, res) {
-//     res.sendFile(__dirname + "/index.html");
-// });
-
-app.listen(8080, function() {
+server.listen(8080, function() {
     console.log("I'm listening.");
+});
+
+io.on("connection", socket => {
+    console.log(`socket with the id ${socket.id} just connected`);
+    const user = socket.request.session.user;
+    socket.on("load", () => {
+        db.getLastTenChatMessages()
+            .then(({ rows }) => {
+                socket.emit("chatMessages", rows.reverse());
+            })
+            .catch(err => console.log(err));
+    });
+
+    socket.on("My amazing chat message", msg => {
+        db.insertMessage(user, msg)
+            .then(() => {
+                db.getLastTenChatMessages().then(({ rows }) => {
+                    socket.emit("chatMessages", rows.reverse());
+                });
+            })
+            .catch(err => console.log(err));
+    });
+
+    socket.on("disconnect", () => {
+        console.log(`socket with id ${socket.id} just diconnected `);
+    });
 });

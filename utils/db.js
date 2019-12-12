@@ -85,3 +85,41 @@ module.exports.delete = function(receiver_id, senderid) {
         [receiver_id, senderid]
     );
 };
+
+module.exports.getFriendAndWannabes = function(receiver_id) {
+    return db.query(
+        `
+         SELECT socialusers.id, firstname, lastname, image_url, accepted
+         FROM friendships
+         JOIN socialusers
+         ON (accepted = false AND receiver_id = $1 AND sender_id = socialusers.id)
+         OR (accepted = true AND receiver_id = $1 AND sender_id = socialusers.id)
+         OR (accepted = true AND sender_id = $1 AND receiver_id = socialusers.id)
+        `,
+        [receiver_id]
+    );
+};
+
+module.exports.getLastTenChatMessages = function() {
+    return db.query(
+        `SELECT chats.id, sender_id, chats.msg, chats.created_at, socialusers.firstname, socialusers.lastname, socialusers.image_url
+        FROM chats
+        LEFT JOIN socialusers ON socialusers.id = chats.sender_id
+        ORDER BY chats.id
+        DESC LIMIT 10`
+    );
+};
+
+module.exports.insertMessage = (id, message) => {
+    return db.query(
+        `INSERT INTO chats (sender_id, msg) VALUES ($1, $2) RETURNING sender_id, msg`,
+        [id, message]
+    );
+};
+
+module.exports.loadComments = function(id, msg) {
+    return db.query("SELECT * FROM chats WHERE id < $1 ORDER BY id DESC", [
+        id,
+        msg
+    ]);
+};

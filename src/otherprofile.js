@@ -8,12 +8,9 @@ export class OtherProfile extends React.Component {
         this.state = {};
     }
     componentDidMount() {
-        console.log("this.props.match: ", this.props.match);
-        console.log("this.props.match.params.id: ", this.props.match.params.id);
         axios
             .get("/api/user/" + this.props.match.params.id)
             .then(({ data }) => {
-                console.log("responseeeeeeeeee:", data);
                 if (this.props.match.params.id == data.id) {
                     this.props.history.push("/");
                 } else {
@@ -30,14 +27,17 @@ export class OtherProfile extends React.Component {
     render() {
         return (
             <div className="other">
+                <br />
                 <h1>
                     {this.state.firstname} {this.state.lastname}
                 </h1>
                 <br />
                 <img className="otherpic" src={this.state.imgurl} />
-                <FriendshipButton otherId={this.props.match.params.id} />
+
                 <br />
                 <p>{this.state.bio}</p>
+                <br />
+                <FriendshipButton otherId={this.props.match.params.id} />
             </div>
         );
     }

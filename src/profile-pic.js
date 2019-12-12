@@ -7,9 +7,6 @@ export function ProfilePic({
     toggleFunction,
     profilePicClass = "pp"
 }) {
-    console.log("this is props in PP: ", firstname);
-    console.log("this is lastname is props in pp:", lastname);
-    console.log(imgurl);
     imgurl = imgurl || "/default.png";
 
     return (

@@ -1,6 +1,6 @@
 import React from "react";
+import Template from "./template.js";
 
-// import Template from "./template";
 import axios from "./axios";
 
 import { Link } from "react-router-dom";
@@ -18,7 +18,6 @@ export default class Login extends React.Component {
             })
             .then(({ data }) => {
                 if (data.success) {
-                    console.log("dattttttaaaa: ", data);
                     location.replace("/");
                 } else {
                     this.setState({
@@ -39,32 +38,48 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div>
-                {this.state.error && <div className="error">Oops!</div>}
-                <h1>I am login!!!</h1>
-                <form>
-                    <h3>Email</h3>
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={e => this.handleChange(e.target)}
-                    />
-                    <h3>Password</h3>
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={e => this.handleChange(e.target)}
-                    />
-                    <button
-                        onClick={e => {
-                            e.preventDefault();
-                            this.submit();
-                        }}
-                    >
-                        Submit
-                    </button>
-                </form>
-                <Link to="/">Take me to registration!</Link>
+            <div className="app">
+                <div className="welcome">
+                    {this.state.error && <div className="error">Oops!</div>}
+
+                    <form>
+                        <h3 classList="email">EMAIL</h3>
+                        <br />
+                        <input
+                            type="email"
+                            name="email"
+                            onChange={e => this.handleChange(e.target)}
+                        />
+                        <br />
+                        <br />
+                        <h3>PASSWORD</h3>
+
+                        <br />
+                        <input
+                            type="password"
+                            name="password"
+                            onChange={e => this.handleChange(e.target)}
+                        />
+                        <br />
+                        <br />
+                        <button
+                            className="button"
+                            onClick={e => {
+                                e.preventDefault();
+                                this.submit();
+                            }}
+                        >
+                            SUBMIT
+                        </button>
+                        <br />
+                        <br />
+                        <Link className="reglink" to="/">
+                            Take me to registration!
+                        </Link>
+                    </form>
+                    <br />
+                    <br />
+                </div>
             </div>
         );
     }

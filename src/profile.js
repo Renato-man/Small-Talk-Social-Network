@@ -11,20 +11,23 @@ export function Profile({
     toggleFunction,
     setBio
 }) {
-    // console.log("props in profile: ", props);
     return (
         <div className={profilePicClass}>
-            <h2 className="nameHeader">
-                {firstname} {lastname}
-            </h2>
-            <ProfilePic
-                profilePicClass="big"
-                firstname={firstname}
-                lastname={lastname}
-                imgurl={imgurl}
-                toggleFunction={toggleFunction}
-            />
-            <BioEditor setBio={setBio} bio={bio} />
+            <div className="welcome1">
+                <h2 className="nameHeader">
+                    {firstname} {lastname}
+                </h2>
+                <br />
+                <br />
+                <ProfilePic
+                    profilePicClass="big"
+                    imgurl={imgurl}
+                    toggleFunction={toggleFunction}
+                />
+                <br />
+
+                <BioEditor setBio={setBio} bio={bio} />
+            </div>
         </div>
     );
 }

@@ -10,22 +10,25 @@
     right: 0;
     padding: 10px;
     display: flex;
-    top: 15px;
+    top: 5px;
+    border-radius: 100px;
 }
 
 .big img {
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
 }
 
 .header {
     /* position: absolute; */
     background-color: ivory;
+    position: fixed;
     display: flex;
     top: 0;
-    height: 150px;
+    height: 130px;
     width: 100vw;
-    margin: 0;
+    margin-bottom: 0px;
     padding: 0;
     justify-content: center;
 }
@@ -35,14 +38,8 @@
     left: 0;
     top: 50px;
     margin-left: 10px;
+    color: black;
 }
-
-/* .nameHeader {
-    position: absolute;
-    right: 0;
-    top: 100px;
-    padding-right: 10px;
-} */
 
 h2 {
     font-family: helvetica;
@@ -53,6 +50,7 @@ h2 {
     width: 250px;
     height: 250px;
     object-fit: cover;
+    border-radius: 100%;
 }
 
 .other {
@@ -66,9 +64,10 @@ h2 {
 .app {
     background-image: url("/leaf2.jpg");
     /* display: flex; */
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     width: 100vw;
-    height: 100%;
+    height: 100vh;
+    overflow: auto;
 }
 /*
 .overlay {
@@ -83,6 +82,153 @@ h2 {
     z-index: 9999999;
 } */
 
+.welcome {
+    height: 100vh;
+}
 .pp img {
     width: 150px;
+}
+
+.friendsAcceppted {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.awaiting {
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+h3 {
+    font-family: helvetica;
+    color: ivory;
+}
+
+.nameHeader {
+    font-family: helvetica;
+    color: ivory;
+    font-size: 40px;
+}
+
+p {
+    font-family: helvetica;
+}
+
+.cards {
+    text-align: center;
+}
+
+.chat-container {
+    height: 400px;
+    width: 500px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ivory;
+    border-radius: 30px;
+}
+
+.find img {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+}
+
+.find {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-attachment: fixed;
+    object-fit: cover;
+}
+
+.in {
+    position: fixed;
+    display: flex;
+
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* .header-space {
+    position: absolute;
+    top: 130px;
+} */
+
+.route {
+    padding-top: 130px;
+}
+
+.search {
+    position: absolute;
+    top: 110px;
+    right: 130px;
+}
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.welcome1 {
+    margin-top: 80px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    margin-top: 20px;
+    margin-left: 35px;
+}
+
+.email {
+    margin-left: 200px;
+}
+
+h1 {
+    font-family: helvetica;
+    color: ivory;
+}
+
+.chats {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    overflow-wrap: wrap;
+}
+
+.l {
+    padding: 20px;
+}
+
+.nav {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.t {
+    margin-top: 55px;
+}
+
+.ppp {
+    color: red;
+    text-align: center;
+}
+
+.send {
+    text-align: center;
 }

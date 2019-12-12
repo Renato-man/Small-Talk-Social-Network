@@ -12,11 +12,11 @@ export default class Welcome extends React.Component {
     }
     render() {
         return (
-            <div>
-                <Template />
+            <div className="app">
                 <div>
                     <HashRouter>
-                        <div>
+                        <Template />
+                        <div className="welcome">
                             <Route exact path="/" component={Register} />
                             <Route path="/login" component={Login} />
                         </div>

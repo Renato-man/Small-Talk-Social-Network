@@ -38,7 +38,7 @@ export default class Uploader extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="search">
                 <input
                     onChange={e => this.handleChange(e)}
                     className="titles"

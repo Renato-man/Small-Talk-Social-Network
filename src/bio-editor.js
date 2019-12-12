@@ -33,8 +33,6 @@ export class BioEditor extends React.Component {
     }
 
     handleChange(e) {
-        console.log("e.target.value", e.target.value);
-
         this.setState({
             bio: e.target.value
         });
@@ -42,12 +40,9 @@ export class BioEditor extends React.Component {
 
     submitBio() {
         axios.post("/bio", this.state).then(({ data }) => {
-            console.log("results,", data);
-            console.log("this is the proooooops: ", this.props);
             this.props.setBio(data[0].bio);
             this.showTextArea();
         });
-        console.log("this state bio: ", this.state.bio);
         if (this.state.bio) {
             this.setState({
                 buttonText: "Edit bio"
@@ -67,20 +62,25 @@ export class BioEditor extends React.Component {
         if (this.state.editingMode) {
             return (
                 <div>
-                    <h1>Add your bio below..</h1>
+                    <h3>Add your bio below..</h3>
+
                     <textarea
                         name="bio"
                         type="text"
                         defaultValue={this.props.bio}
                         onChange={e => this.handleChange(e)}
                     />
+                    <br />
+                    <br />
                     <button onClick={this.submitBio}>Save</button>
                 </div>
             );
         } else {
             return (
                 <div>
-                    <p>{this.props.bio}</p>
+                    <h3>{this.props.bio}</h3>
+                    <br />
+                    <br />
                     <button onClick={e => this.showTextArea(e)}>
                         {this.state.buttonText}
                     </button>

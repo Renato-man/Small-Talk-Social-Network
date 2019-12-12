@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Welcome from "./welcome";
+import * as io from "socket.io-client";
+import { init } from "./socket";
 // import Register from "./registration";
 
 import { createStore, applyMiddleware } from "redux";
@@ -16,9 +18,12 @@ const store = createStore(
 
 import App from "./app";
 
+const socket = io.connect();
+
 let elem = <Welcome />;
 
 if (location.pathname != "/welcome") {
+    init(store);
     elem = (
         <Provider store={store}>
             <App />
