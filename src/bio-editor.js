@@ -6,7 +6,7 @@ export class BioEditor extends React.Component {
         super(props);
         this.state = {
             editingMode: false,
-            buttonText: "edit bio.."
+            buttonText: "EDIT BIO.."
         };
         this.handleChange = this.handleChange.bind(this);
         this.showTextArea = this.showTextArea.bind(this);
@@ -45,11 +45,11 @@ export class BioEditor extends React.Component {
         });
         if (this.state.bio) {
             this.setState({
-                buttonText: "Edit bio"
+                buttonText: "EDIT BIO"
             });
         } else {
             this.setState({
-                buttonText: "Add bio"
+                buttonText: "ADD BIO"
             });
         }
     }
@@ -72,7 +72,9 @@ export class BioEditor extends React.Component {
                     />
                     <br />
                     <br />
-                    <button onClick={this.submitBio}>Save</button>
+                    <button className="m" onClick={this.submitBio}>
+                        SAVE
+                    </button>
                 </div>
             );
         } else {
@@ -81,7 +83,7 @@ export class BioEditor extends React.Component {
                     <h3>{this.props.bio}</h3>
                     <br />
                     <br />
-                    <button onClick={e => this.showTextArea(e)}>
+                    <button className="m" onClick={e => this.showTextArea(e)}>
                         {this.state.buttonText}
                     </button>
                 </div>

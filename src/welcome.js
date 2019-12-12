@@ -1,5 +1,5 @@
 import Register from "./registration";
-
+import Loginheader from "./loginheader";
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import Template from "./template";
@@ -13,9 +13,9 @@ export default class Welcome extends React.Component {
     render() {
         return (
             <div className="app">
-                <div>
+                <div className="overlay">
                     <HashRouter>
-                        <Template />
+                        <Loginheader />
                         <div className="welcome">
                             <Route exact path="/" component={Register} />
                             <Route path="/login" component={Login} />

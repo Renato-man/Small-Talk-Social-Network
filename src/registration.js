@@ -38,11 +38,14 @@ export default class Register extends React.Component {
     }
     render() {
         return (
-            <div className="app">
+            <div>
                 <div className="welcome">
+                    <h3 className="t">REGISTRATION</h3>
+                    <br />
+                    <br />
                     <form>
                         {this.state.error && <div className="error">Oops!</div>}
-                        <h3>First Name</h3>
+                        <h3 className="o">First Name</h3>
                         <br />
                         <input
                             name="firstname"
@@ -50,7 +53,7 @@ export default class Register extends React.Component {
                         />
                         <br />
                         <br />
-                        <h3>Last Name</h3>
+                        <h3 className="o">Last Name</h3>
                         <br />
                         <input
                             name="lastname"
@@ -58,7 +61,7 @@ export default class Register extends React.Component {
                         />
                         <br />
                         <br />
-                        <h3>Email</h3>
+                        <h3 className="o">Email</h3>
                         <br />
                         <input
                             type="email"
@@ -67,7 +70,7 @@ export default class Register extends React.Component {
                         />
                         <br />
                         <br />
-                        <h3>Password</h3>
+                        <h3 className="o">Password</h3>
                         <br />
                         <input
                             type="password"
@@ -83,12 +86,14 @@ export default class Register extends React.Component {
                                 this.submit();
                             }}
                         >
-                            Submit
+                            SUBMIT
                         </button>
                         <br />
                         <br />
                     </form>
-                    <Link to="/login">Take me to Login!</Link>
+                    <h3 className="z">
+                        <Link to="/login">Take me to Login!</Link>
+                    </h3>
                 </div>
             </div>
         );

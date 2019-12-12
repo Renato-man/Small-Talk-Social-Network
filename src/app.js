@@ -1,6 +1,5 @@
 import React from "react";
 import Template from "./template";
-import { ProfilePic } from "./profile-pic";
 import Uploader from "./uploader";
 import { Profile } from "./profile";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -74,33 +73,38 @@ export default class App extends React.Component {
             <div className="app">
                 <BrowserRouter>
                     <div>
-                        <Template
-                            firstname={this.state.firstname}
-                            lastname={this.state.lastname}
-                            imgurl={this.state.imgurl}
-                            toggleFunction={this.toggleModal.bind(this)}
-                        />
-                        <div className="route">
-                            <Route
-                                exact
-                                path="/"
-                                render={() => (
-                                    <Profile
-                                        firstname={this.state.firstname}
-                                        lastname={this.state.lastname}
-                                        imgurl={this.state.imgurl}
-                                        bio={this.state.bio}
-                                        toggleFunction={this.toggleModal.bind(
-                                            this
-                                        )}
-                                        setBio={this.setBio}
-                                    />
-                                )}
+                        <div className="overlay">
+                            <Template
+                                firstname={this.state.firstname}
+                                lastname={this.state.lastname}
+                                imgurl={this.state.imgurl}
+                                toggleFunction={this.toggleModal.bind(this)}
                             />
-                            <Route path="/user/:id" component={OtherProfile} />
-                            <Route path="/users" component={FindPeople} />
-                            <Route path="/friends" component={Friends} />
-                            <Route path="/chat" component={Chat} />
+                            <div className="route">
+                                <Route
+                                    exact
+                                    path="/"
+                                    render={() => (
+                                        <Profile
+                                            firstname={this.state.firstname}
+                                            lastname={this.state.lastname}
+                                            imgurl={this.state.imgurl}
+                                            bio={this.state.bio}
+                                            toggleFunction={this.toggleModal.bind(
+                                                this
+                                            )}
+                                            setBio={this.setBio}
+                                        />
+                                    )}
+                                />
+                                <Route
+                                    path="/user/:id"
+                                    component={OtherProfile}
+                                />
+                                <Route path="/users" component={FindPeople} />
+                                <Route path="/friends" component={Friends} />
+                                <Route path="/chat" component={Chat} />
+                            </div>
                         </div>
                     </div>
                 </BrowserRouter>

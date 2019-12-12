@@ -25,7 +25,7 @@ export function FindPeople() {
     }, [searchUser]);
 
     return (
-        <div className="app">
+        <div>
             <div className="in">
                 <input onChange={e => setSearchUser(e.target.value)}></input>
                 <button>SEARCH</button>
@@ -42,6 +42,7 @@ export function FindPeople() {
                                         key={socialusers.id}
                                         imgurl={socialusers.image_url}
                                     />
+                                    <br />
                                     <h3>
                                         {socialusers.firstname} {""}
                                         {socialusers.lastname}

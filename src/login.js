@@ -1,5 +1,4 @@
 import React from "react";
-import Template from "./template.js";
 
 import axios from "./axios";
 
@@ -38,12 +37,14 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div className="app">
+            <div>
                 <div className="welcome">
                     {this.state.error && <div className="error">Oops!</div>}
-
+                    <h3 className="t">LOGIN</h3>
+                    <br />
+                    <br />
                     <form>
-                        <h3 classList="email">EMAIL</h3>
+                        <h3 className="o">Email</h3>
                         <br />
                         <input
                             type="email"
@@ -52,7 +53,7 @@ export default class Login extends React.Component {
                         />
                         <br />
                         <br />
-                        <h3>PASSWORD</h3>
+                        <h3 className="o">Password</h3>
 
                         <br />
                         <input
@@ -73,10 +74,12 @@ export default class Login extends React.Component {
                         </button>
                         <br />
                         <br />
+                    </form>
+                    <h3>
                         <Link className="reglink" to="/">
                             Take me to registration!
                         </Link>
-                    </form>
+                    </h3>
                     <br />
                     <br />
                 </div>

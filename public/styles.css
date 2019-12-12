@@ -12,12 +12,14 @@
     display: flex;
     top: 5px;
     border-radius: 100px;
+    z-index: 9999999;
 }
 
 .big img {
     width: 300px;
     height: 300px;
     border-radius: 100%;
+    z-index: 9999999;
 }
 
 .header {
@@ -31,6 +33,7 @@
     margin-bottom: 0px;
     padding: 0;
     justify-content: center;
+    z-index: 999999999;
 }
 
 .logo {
@@ -39,11 +42,13 @@
     top: 50px;
     margin-left: 10px;
     color: black;
+    z-index: 9999999;
 }
 
 h2 {
     font-family: helvetica;
     font-size: 20px;
+    z-index: 9999999;
 }
 
 .otherpic {
@@ -51,6 +56,7 @@ h2 {
     height: 250px;
     object-fit: cover;
     border-radius: 100%;
+    z-index: 9999999;
 }
 
 .other {
@@ -59,6 +65,7 @@ h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 9999999;
 }
 
 .app {
@@ -68,6 +75,7 @@ h2 {
     width: 100vw;
     height: 100vh;
     overflow: auto;
+    z-index: 9999998;
 }
 /*
 .overlay {
@@ -84,9 +92,11 @@ h2 {
 
 .welcome {
     height: 100vh;
+    z-index: 9999999;
 }
 .pp img {
     width: 150px;
+    z-index: 9999999;
 }
 
 .friendsAcceppted {
@@ -94,30 +104,36 @@ h2 {
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
+    z-index: 9999999;
 }
 .awaiting {
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
+    z-index: 9999999;
 }
 
 h3 {
     font-family: helvetica;
     color: ivory;
+    z-index: 9999999;
 }
 
 .nameHeader {
     font-family: helvetica;
     color: ivory;
     font-size: 40px;
+    z-index: 9999999;
 }
 
 p {
     font-family: helvetica;
+    z-index: 9999999;
 }
 
 .cards {
     text-align: center;
+    z-index: 9999999;
 }
 
 .chat-container {
@@ -126,16 +142,18 @@ p {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
     background-color: ivory;
     border-radius: 30px;
+    z-index: 9999999;
 }
 
 .find img {
     width: 300px;
     height: 300px;
     border-radius: 100%;
+    z-index: 9999999;
 }
 
 .find {
@@ -144,6 +162,7 @@ p {
     text-align: center;
     background-attachment: fixed;
     object-fit: cover;
+    z-index: 9999999;
 }
 
 .in {
@@ -151,7 +170,8 @@ p {
     display: flex;
 
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    z-index: 9999999;
 }
 
 /* .header-space {
@@ -161,12 +181,14 @@ p {
 
 .route {
     padding-top: 130px;
+    z-index: 9999999;
 }
 
 .search {
     position: absolute;
     top: 110px;
     right: 130px;
+    z-index: 9999999;
 }
 
 .welcome {
@@ -176,6 +198,7 @@ p {
     align-items: center;
     height: 100vh;
     width: 100vw;
+    z-index: 9999999;
 }
 
 .welcome1 {
@@ -185,20 +208,24 @@ p {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    z-index: 9999999;
 }
 
 .button {
     margin-top: 20px;
     margin-left: 35px;
+    z-index: 9999999;
 }
 
 .email {
     margin-left: 200px;
+    z-index: 9999999;
 }
 
 h1 {
     font-family: helvetica;
     color: ivory;
+    z-index: 9999999;
 }
 
 .chats {
@@ -208,27 +235,87 @@ h1 {
     flex-wrap: wrap;
     border: 2px solid black;
     overflow-wrap: wrap;
+    z-index: 9999999;
 }
 
 .l {
     padding: 20px;
+    z-index: 9999999;
 }
 
 .nav {
     margin-top: 35px;
     display: flex;
     justify-content: space-around;
+    z-index: 9999999;
 }
 
 .t {
-    margin-top: 55px;
+    margin-top: 58px;
+    z-index: 9999999;
 }
 
 .ppp {
     color: red;
     text-align: center;
+    z-index: 9999999;
 }
 
 .send {
     text-align: center;
+    z-index: 9999999;
+}
+
+.o {
+    text-align: center;
+    z-index: 9999999;
+}
+
+a:link {
+    text-decoration: none;
+    z-index: 9999999;
+}
+
+a:visited {
+    color: black;
+    z-index: 9999999;
+}
+
+.u {
+    z-index: 9999999;
+}
+
+.overlay {
+    background-repeat: repeat-y;
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: scroll;
+}
+
+.p h4 {
+    margin-bottom: 15px;
+}
+
+a:hover {
+    color: #7fffd4;
+}
+
+button {
+    border: none;
+    background-color: ivory;
+}
+
+.m {
+    display: flex;
+    justify-content: center;
+}
+
+.t {
+    color: #7fffd4;
 }

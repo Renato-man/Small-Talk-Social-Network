@@ -33,18 +33,21 @@ export function Chat() {
                 {chatMessages &&
                     chatMessages.map(socialusers => {
                         return (
-                            <div classList="chats" key={socialusers.id}>
+                            <div key={socialusers.id}>
                                 <Link
                                     to={`/user/${socialusers.sender_id}`}
                                     className="send"
                                 >
+                                    <div className="u"></div>
                                     <br />
-                                    <ProfilePic
-                                        key={socialusers.id}
-                                        imgurl={socialusers.image_url}
-                                        firstname={socialusers.firstname}
-                                        lastname={socialusers.lastname}
-                                    />
+                                    <div className="p">
+                                        <ProfilePic
+                                            key={socialusers.id}
+                                            imgurl={socialusers.image_url}
+                                            firstname={socialusers.firstname}
+                                            lastname={socialusers.lastname}
+                                        />
+                                    </div>
                                 </Link>
                                 <br />
                                 <p className="ppp">{socialusers.msg}</p>

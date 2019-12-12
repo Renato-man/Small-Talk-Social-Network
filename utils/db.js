@@ -117,9 +117,9 @@ module.exports.insertMessage = (id, message) => {
     );
 };
 
-module.exports.loadComments = function(id, msg) {
-    return db.query("SELECT * FROM chats WHERE id < $1 ORDER BY id DESC", [
-        id,
-        msg
-    ]);
-};
+// module.exports.loadComments = function(id, msg) {
+//     return db.query("SELECT * FROM chats WHERE id < $1 ORDER BY id DESC", [
+//         id,
+//         msg
+//     ]);
+// };
