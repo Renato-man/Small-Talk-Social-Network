@@ -1,7 +1,7 @@
 # Small-Talk-Social-Network
-Login page 
+Login 
 ![login](githubImages/login.png)
-Register
+Registration
 ![login](githubImages/register.png)
 Profile
 ![login](githubImages/profile.png)
