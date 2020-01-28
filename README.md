@@ -3,25 +3,25 @@ Login
 ![login](githubImages/login.png)
 
 Registration
-![login](githubImages/register.png)
+![Registration](githubImages/register.png)
 
 Profile
-![login](githubImages/profile.png)
+![Profile](githubImages/profile.png)
 
 Update bio/status
-![login](githubImages/bioeditor.png)
+![bio/status](githubImages/bioeditor.png)
 
 Update profile pic
-![login](githubImages/picupload.png)
+![Update profile pic](githubImages/picupload.png)
 
 Find Friends
-![login](githubImages/finfriends.png)
+![Find Friends](githubImages/finfriends.png)
 
 Search in find friends
-![login](githubImages/searchinfindfriends.png)
+![Search in find friends](githubImages/searchinfindfriends.png)
 
 Friends & Awaiting requests
-![login](githubImages/friends&awaiting.png)
+![Friends & Awaiting requests](githubImages/friends&awaiting.png)
 
 Chat room
-![login](githubImages/chatroom.png)
+![Chat room](githubImages/chatroom.png)
